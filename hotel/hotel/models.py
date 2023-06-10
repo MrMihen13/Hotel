@@ -4,6 +4,9 @@ from django.db import models
 class Country(models.Model):
     name = models.CharField(max_length=128, verbose_name='Название страны')
 
+    def __str__(self):
+        return self.name
+
 
 class Hotel(models.Model):
     name = models.CharField(max_length=128, verbose_name='Название отеля')
@@ -11,3 +14,6 @@ class Hotel(models.Model):
     country = models.ForeignKey(Country, on_delete=models.DO_NOTHING, verbose_name='Страна')
     phone = models.CharField(max_length=12, verbose_name='Телефон')
     email = models.EmailField(verbose_name='Email')
+
+    def __str__(self):
+        return self.name

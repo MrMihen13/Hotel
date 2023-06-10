@@ -21,3 +21,6 @@ class Guest(models.Model):
 
     arrival_date = models.DateField(verbose_name='Дата приезда')
     departure_date = models.DateField(verbose_name='Дата отъезда')
+
+    def __str__(self):
+        return f'{self.room} {self.name} {self.last_name}'

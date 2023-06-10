@@ -32,3 +32,6 @@ class Room(models.Model):
     additional_amenities = models.TextField(verbose_name='Дополнительные удобства')
 
     price_per_day = models.DecimalField(max_digits=7, decimal_places=2, verbose_name='Стоимость за сутки')
+
+    def __str__(self):
+        return str(self.number)
