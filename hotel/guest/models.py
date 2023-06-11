@@ -24,3 +24,7 @@ class Guest(models.Model):
 
     def __str__(self):
         return f'{self.room} {self.name} {self.last_name}'
+
+    class Meta:
+        verbose_name = 'Постоялец'
+        verbose_name_plural = 'Постояльцы'

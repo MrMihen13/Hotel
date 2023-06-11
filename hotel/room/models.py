@@ -15,6 +15,8 @@ class Room(models.Model):
         combined = 'Совмещенный'
         separate = 'Раздельный'
 
+
+
     number = models.PositiveIntegerField(verbose_name='Номер')
     hotel = models.ForeignKey(hotel_models.Hotel, on_delete=models.DO_NOTHING, verbose_name='Отель')
     room_class = models.CharField(choices=RoomClasses.choices, max_length=20, verbose_name='Класс номера')
@@ -35,3 +37,7 @@ class Room(models.Model):
 
     def __str__(self):
         return str(self.number)
+
+    class Meta:
+        verbose_name = 'Номер'
+        verbose_name_plural = 'Номера'

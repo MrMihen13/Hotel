@@ -7,6 +7,10 @@ class Country(models.Model):
     def __str__(self):
         return self.name
 
+    class Meta:
+        verbose_name = 'Страна'
+        verbose_name_plural = 'Страны'
+
 
 class Hotel(models.Model):
     name = models.CharField(max_length=128, verbose_name='Название отеля')
@@ -17,3 +21,7 @@ class Hotel(models.Model):
 
     def __str__(self):
         return self.name
+
+    class Meta:
+        verbose_name = 'Отель'
+        verbose_name_plural = 'Отели'

@@ -13,3 +13,7 @@ class Booking(models.Model):
     guest = models.ForeignKey(guest_models.Guest, on_delete=models.DO_NOTHING, verbose_name='Постоялец')
 
     number = models.CharField(max_length=8, verbose_name='Код бронирования', editable=False)
+
+    class Meta:
+        verbose_name = 'Бронь'
+        verbose_name_plural = 'Брони'
