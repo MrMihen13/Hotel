@@ -23,5 +23,6 @@ urlpatterns = [
     path('', include('hotel.guest.urls')),
     path('', include('hotel.hotel.country_urls')),
     path('booking/', include('hotel.booking.urls')),
+
     path('', include('hotel.cauth.urls'))
 ]
