@@ -1,26 +1,17 @@
 import coreapi
-from datetime import date
 
 from django_filters import filterset
 from django_filters.filters import BaseInFilter
 from django.db.models import QuerySet, Q
 
-from hotel.booking import models as booking_models
 from hotel.room import models as room_models
+from hotel.booking import utils
 
 
-def get_free_rooms(rooms: QuerySet[room_models.Room],
-                   date_start: str = date.today(), date_end: str = None) -> QuerySet[room_models.Room]:
-    if date_start and date_end:
-        free_rooms_ids = booking_models.Booking.objects.filter(
-            Q(date_start__lt=date_start, date_end__lt=date_start) | Q(date_start__gt=date_start, date_end__gt=date_end)
-        ).values_list('room_id', flat=True)
-        return rooms.filter(id__in=free_rooms_ids)
-
-    free_rooms_ids = booking_models.Booking.objects.filter(
-        Q(date_start__lt=date_start, date_end__lt=date_start) | Q(date_start__gt=date_start)
-    ).values_list('room_id', flat=True)
-    return rooms.filter(id__in=free_rooms_ids)
+def get_free_rooms(
+        rooms: QuerySet[room_models.Room], date_start: str = None, date_end: str = None) -> QuerySet[room_models.Room]:
+    occupied_rooms_ids = utils.get_bookings(date_start=date_start, date_end=date_end).values_list('room_id', flat=True)
+    return rooms.filter(~Q(id__in=occupied_rooms_ids))
 
 
 class RoomDateFilter(BaseInFilter):
@@ -40,13 +31,7 @@ class RoomDateFilter(BaseInFilter):
         date_start = request.GET.get(self.start_date.name)
         date_end = request.GET.get(self.end_date.name)
 
-        if date_start and date_end:
-            return get_free_rooms(rooms=rooms, date_start=date_start, date_end=date_end)
-
-        if date_start and not date_end:
-            return get_free_rooms(rooms=rooms, date_start=date_start)
-
-        return get_free_rooms(rooms=rooms)
+        return get_free_rooms(rooms=rooms, date_start=date_start, date_end=date_end)
 
     def get_schema_fields(self, view):
         return [

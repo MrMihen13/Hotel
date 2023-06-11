@@ -10,7 +10,7 @@ class ListRoomAPIView(generics.ListAPIView):
     serializer_class = serializers.RoomSerializer
     queryset = models.Room.objects.all()
 
-    filter_backends = [DjangoFilterBackend, filters.SearchFilter, room_filters.RoomDateFilter]
+    filter_backends = [room_filters.RoomDateFilter, DjangoFilterBackend, filters.SearchFilter, ]
     filterset_fields = [
         'has_tv',
         'has_phone',
@@ -19,6 +19,3 @@ class ListRoomAPIView(generics.ListAPIView):
         'has_balcony',
     ]
     search_fields = ['number', ]
-
-    def get_queryset(self):
-        return room_filters.get_free_rooms(self.queryset)

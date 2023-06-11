@@ -20,5 +20,8 @@ urlpatterns = [
     path('redoc/', schema_view.with_ui('redoc', cache_timeout=0), name='chema-redoc'),
 
     path('', include('hotel.room.urls')),
-    path('auth/', include('hotel.cauth.urls'))
+    path('', include('hotel.guest.urls')),
+    path('', include('hotel.hotel.country_urls')),
+    path('booking/', include('hotel.booking.urls')),
+    path('', include('hotel.cauth.urls'))
 ]

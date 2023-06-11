@@ -1,3 +1,9 @@
-from django.shortcuts import render
+from rest_framework import generics, permissions
 
-# Create your views here.
+from hotel.hotel import models, serializers
+
+
+class ListCountryAPIView(generics.ListAPIView):
+    permission_classes = (permissions.AllowAny,)
+    serializer_class = serializers.CountrySerializer
+    queryset = models.Country.objects.all()
