@@ -1,9 +1,7 @@
 from django.db import models
-from django.contrib.auth import get_user_model
 
 from hotel.room import models as room_models
-
-USER = get_user_model()
+from hotel.guest import models as guest_models
 
 
 class Booking(models.Model):
@@ -12,6 +10,6 @@ class Booking(models.Model):
     date_start = models.DateField(verbose_name='Дата начала')
     date_end = models.DateField(verbose_name='Дата конца')
 
-    guest = models.ForeignKey(USER, on_delete=models.DO_NOTHING, verbose_name='Постоялец')
+    guest = models.ForeignKey(guest_models.Guest, on_delete=models.DO_NOTHING, verbose_name='Постоялец')
 
-    number = models.IntegerField(verbose_name='Код бронирования')
+    number = models.CharField(max_length=8, verbose_name='Код бронирования', editable=False)

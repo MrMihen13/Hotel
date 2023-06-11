@@ -18,7 +18,7 @@ RUN python -m pip install pip --upgrade \
 
 COPY .. /app
 
-# RUN python manage.py collectstatic --noinput
+RUN python manage.py collectstatic --noinput
 
 RUN groupadd --gid 1001 app \
   && useradd --uid 1001 --gid app --shell /bin/bash app
