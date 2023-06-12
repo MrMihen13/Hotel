@@ -22,7 +22,7 @@ from hotel.api_versions import api_version_1
 
 
 urlpatterns = [
-    path('', admin.site.urls),
+    path('hotel', admin.site.urls),
 
     path('api/v1/', include(api_version_1))
 ]
