@@ -15,6 +15,9 @@ DEBUG = os.environ.get('DEBUG', False) in ('True', 'true', '1', 1)
 # Application definition
 
 INSTALLED_APPS = [
+    'admin_interface',
+    'colorfield',
+
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
@@ -26,6 +29,7 @@ INSTALLED_APPS = [
     'drf_yasg',
     'djoser',
     'corsheaders',
+    'rangefilter',
     
     'hotel.booking',
     'hotel.cauth',
