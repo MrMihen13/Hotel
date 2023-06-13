@@ -34,10 +34,9 @@ class RoomModels(admin.ModelAdmin):
     list_filter = (
         FreeRoomsFilter,
         ('price_per_day', NumericRangeFilterBuilder()),
-        ('rooms_number', NumericRangeFilterBuilder(
-            default_start=2
-        )),
+        ('rooms_number', NumericRangeFilterBuilder(default_start=2)),
         ('floor', NumericRangeFilterBuilder()),
+        ('place_count', NumericRangeFilterBuilder()),
         'room_class', 'bathroom_type',
         'has_tv', 'has_phone', 'has_air_conditioning',
         'has_refrigerator', 'has_balcony', 'is_non_smoking',
