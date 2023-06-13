@@ -8,7 +8,7 @@ from hotel.guest import models
 
 @admin.register(models.Guest)
 class GuestAdmin(admin.ModelAdmin):
-    list_display = ('name', 'last_name', 'hotel', 'country', 'arrival_date', 'departure_date')
+    list_display = ('name', 'last_name', 'address', 'country', 'arrival_date', 'departure_date')
     list_filter = (
         ('arrival_date', DateRangeFilterBuilder(
             default_start=date.today(),

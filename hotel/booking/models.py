@@ -15,5 +15,6 @@ class Booking(models.Model):
     number = models.CharField(max_length=8, verbose_name='Код бронирования', editable=False)
 
     class Meta:
+        unique_together = ('room', 'date_start', 'date_end')
         verbose_name = 'Бронь'
         verbose_name_plural = 'Брони'

@@ -12,7 +12,7 @@ class Guest(models.Model):
     middle_name = models.CharField(max_length=123, verbose_name='Отчество')
 
     country = models.ForeignKey(hotel_models.Country, on_delete=models.DO_NOTHING, verbose_name='Страна')
-    hotel = models.ForeignKey(hotel_models.Hotel, on_delete=models.DO_NOTHING, verbose_name='Отель')
+    address = models.TextField(verbose_name='Адрес')
 
     passport_series = models.DecimalField(max_digits=6, decimal_places=0, verbose_name='Серия паспорта')
     passport_number = models.DecimalField(max_digits=6, decimal_places=0, verbose_name='Номер паспорта')
